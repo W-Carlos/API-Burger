@@ -5,23 +5,23 @@ const app = express()
 const port = 3000
 app.use(express.json())
 
-const customerRequest = []
+const firstOrder = []
 
 // Rota de criar pedidos
-app.post('/customerRequest', (request, response) => {
+app.post('/firstOrder', (request, response) => {
 
     const {order, clienteName, price} = request.body
 
-    const newOrder = {id:uuid.v4(), order, clienteName, price}
+    const newOrder = {id:uuid.v4(), order, clienteName, price, status: "Em preparação"}
 
-    customerRequest.push(newOrder)
+    firstOrder.push(newOrder)
 
     return response.status(201).json(newOrder)
 })
 
 // Rota que mostra os pedidos
-app.get('/customerRequest', (request, response) => {
-    return response.json(customerRequest)
+app.get('/firstOrder', (request, response) => {
+    return response.json(firstOrder)
 })
 
 app.listen(port, () => {
