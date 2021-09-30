@@ -44,6 +44,24 @@ app.put('/firstOrder/:id', (request, response) => {
     return response.json(updateOrder)
 })
 
+// Rota que deleta pedido
+app.delete('/firstOrder/:id', (request, response) => {
+    const {id} = request.params
+
+    const index = firstOrder.findIndex(order => order.id === id)
+
+    if(index < 0) {
+        return response.status(404).json({message: "Order not found"})
+    }
+
+    firstOrder.splice(index, 1)
+
+    return response.status(204).json()
+})
+
+
+
+
 app.listen(port, () => {
     console.log(`🚀Server started on port ${port}`)
 })
