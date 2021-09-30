@@ -19,7 +19,7 @@ app.post('/firstOrder', (request, response) => {
     return response.status(201).json(newOrder)
 })
 
-// Rota que mostra os pedidos
+// Rota que mostra todos os pedidos
 app.get('/firstOrder', (request, response) => {
     return response.json(firstOrder)
 })
@@ -57,6 +57,22 @@ app.delete('/firstOrder/:id', (request, response) => {
     firstOrder.splice(index, 1)
 
     return response.status(204).json()
+})
+
+// Rota que retorna um pedido específico
+app.get('/firstOrder/:id', (request, response) => {
+
+    const {id} = request.params
+
+    const index = firstOrder.findIndex(order => order.id === id)
+
+    if(index < 0) {
+        return response.status(404).json({message: "Order not found"})
+    }
+
+    orderId = firstOrder[index]
+
+    return response.json(orderId)
 })
 
 
