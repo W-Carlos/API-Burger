@@ -23,8 +23,16 @@ const checkId = (request, response, next) => {
     next()
 }
 
+const routeMethod = (request, response, next) => {
+    
+    console.log(request.method)
+    console.log(request.url)
+
+    next()
+}
+
 // Rota de criar pedidos
-app.post('/firstOrder', (request, response) => {
+app.post('/firstOrder', routeMethod, (request, response) => {
 
     const {order, clienteName, price} = request.body
 
@@ -36,12 +44,13 @@ app.post('/firstOrder', (request, response) => {
 })
 
 // Rota que mostra todos os pedidos
-app.get('/firstOrder', (request, response) => {
+app.get('/firstOrder', routeMethod, (request, response) => {
     return response.json(firstOrder)
+
 })
 
 // Rota que altera pedido ja feito
-app.put('/firstOrder/:id', checkId, (request, response) => {
+app.put('/firstOrder/:id', checkId, routeMethod,(request, response) => {
 
     const index = request.orderIndex
     const id = request.orderId
@@ -56,7 +65,7 @@ app.put('/firstOrder/:id', checkId, (request, response) => {
 })
 
 // Rota que deleta pedido
-app.delete('/firstOrder/:id', checkId, (request, response) => {
+app.delete('/firstOrder/:id', checkId, routeMethod, (request, response) => {
     const index = request.orderIndex
 
     firstOrder.splice(index, 1)
@@ -65,7 +74,7 @@ app.delete('/firstOrder/:id', checkId, (request, response) => {
 })
 
 // Rota que retorna um pedido específico pelo id
-app.get('/firstOrder/:id', checkId, (request, response) => {
+app.get('/firstOrder/:id', checkId, routeMethod, (request, response) => {
 
     const index = request.orderIndex
 
@@ -75,7 +84,7 @@ app.get('/firstOrder/:id', checkId, (request, response) => {
 })
 
 // Rota que altera o status do pedido recebido pelo id para "Pronto".
-app.patch('/firstOrder/:id', checkId, (request, response) => {
+app.patch('/firstOrder/:id', checkId, routeMethod, (request, response) => {
     const {order, clienteName, price, status} = request.body
 
     const index = request.orderIndex
