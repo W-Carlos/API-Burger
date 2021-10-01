@@ -59,7 +59,7 @@ app.delete('/firstOrder/:id', (request, response) => {
     return response.status(204).json()
 })
 
-// Rota que retorna um pedido específico
+// Rota que retorna um pedido específico pelo id
 app.get('/firstOrder/:id', (request, response) => {
 
     const {id} = request.params
@@ -75,7 +75,23 @@ app.get('/firstOrder/:id', (request, response) => {
     return response.json(orderId)
 })
 
+// Rota que altera o status do pedido recebido pelo id para "Pronto".
+app.patch('/firstOrder/:id', (request, response) => {
+    const {id} = request.params
+    const {order, clienteName, price, status} = request.body
 
+    const changeStatus = {id, order, clienteName, price, status}
+
+    const index = firstOrder.findIndex(order => order.id === id)
+
+    if(index < 0) {
+        return response.status(404).json({message: "Order not found"})
+    }
+
+    firstOrder[index] = changeStatus
+
+    return response.json(changeStatus)
+})
 
 
 app.listen(port, () => {
