@@ -46,7 +46,6 @@ app.post('/firstOrder', routeMethod, (request, response) => {
 // Rota que mostra todos os pedidos
 app.get('/firstOrder', routeMethod, (request, response) => {
     return response.json(firstOrder)
-
 })
 
 // Rota que altera pedido ja feito
@@ -61,7 +60,7 @@ app.put('/firstOrder/:id', checkId, routeMethod,(request, response) => {
 
     firstOrder[index] = updateOrder
 
-    return response.json(updateOrder)
+    return response.status(201).json(updateOrder)
 })
 
 // Rota que deleta pedido
@@ -80,7 +79,7 @@ app.get('/firstOrder/:id', checkId, routeMethod, (request, response) => {
 
     orderId = firstOrder[index]
 
-    return response.json(orderId)
+    return response.status(201).json(orderId)
 })
 
 // Rota que altera o status do pedido recebido pelo id para "Pronto".
@@ -94,7 +93,7 @@ app.patch('/firstOrder/:id', checkId, routeMethod, (request, response) => {
 
     firstOrder[index] = changeStatus
 
-    return response.json(changeStatus)
+    return response.status(201).json(changeStatus)
 })
 
 app.listen(port, () => {
