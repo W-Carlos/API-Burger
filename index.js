@@ -8,6 +8,7 @@ const port = 3001
 app.use(express.json())
 app.use(cors())
 
+// Atenção: Não é uma boa prática utilizar um array para armazenar os dados em uma API. O correto seria armazenar em um banco de dados. O arrey só foi utilizado porque o foco era a criação das rotas.
 const firstOrder = []
 
 const checkId = (request, response, next) => {
