@@ -6,7 +6,7 @@
 > ## 💻 Projeto
 Burger é uma aplicação simples onde o usuário pode adicionar e excluir pedidos de uma hamburgueria. Essa API armazena o id, nome do pedido, nome do cliente, o preço e o status do pedido.
 
-> ## 📸 Demo
+> ## 📸 Screenshot
 <img src="./assets/api1.png">
 <img src="./assets/api2.png">
 
